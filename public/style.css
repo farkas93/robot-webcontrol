@@ -1,22 +1,45 @@
 body, html {
     height: 100%;
     margin: 0;
+    background-color: #2A4D69; /* More blue background */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.title-bar {
+    font-size: 50px;
+    color: white;
+    margin-bottom: 50px;
 }
 
 .button-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
-    /* Adjust the width and padding as needed */
-    padding: 20px;
-    /* Optional: add more styling here */
 }
 
 button {
-    /* Optional: Style your buttons */
-    padding: 10px;
+    width: 100px; /* Square buttons */
+    height: 100px;
+    border: none;
+    background-color: #4B7B9F; /* Complementary blue */
+    color: white;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    border-radius: 5px; /* Slightly rounded corners for a modern look */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #396A8F; /* Darker shade on hover */
+}
+
+.fas {
+    pointer-events: none; /* Prevent icon from capturing clicks */
+    color: #FFD700; /* Gold-yellow color for icons */
 }

@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button GUI</title>
+    <title>ELIZA Controls</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 </head>
 <script src="script.js"></script>
 <body>
+    <div class="title-bar">ELIZA Controls</div>
     <div class="button-container">
-        <button data-command="0">Left</button> <!-- Command: left -->
-        <button data-command="1">Right</button> <!-- Command: right -->
-        <button data-command="2">Up</button> <!-- Command: up -->
-        <button data-command="4">Forward</button> <!-- Command: forward -->
-        <button data-command="3">Down</button> <!-- Command: down -->
-        <button data-command="5">Backward</button> <!-- Command: backward -->
-    </div>
-    
+        <button data-command="0"><i class="fas fa-arrow-left"></i></button>
+        <button data-command="1"><i class="fas fa-arrow-right"></i></button>
+        <button data-command="2"><i class="fas fa-arrow-up"></i></button>
+        <button data-command="5"><i class="fas fa-arrow-circle-up"></i></button> <!-- Command: backward -->
+        <button data-command="3"><i class="fas fa-arrow-down"></i></button>
+        <button data-command="4"><i class="fas fa-arrow-circle-down"></i></button> <!-- Command: forward -->
+    </div>    
 </body>
 </html>
