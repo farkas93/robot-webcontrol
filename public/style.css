@@ -6,6 +6,20 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 20px 40px; /* General padding */
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px 20px; /* Adjusted padding for smaller screens */
+    }
+}
+
+#camera-stream {
+    max-width: 100%; /* Ensures the stream scales correctly */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Changes display to block */
+    margin-bottom: 20px; /* Adds padding below the camera stream */
 }
 
 .title-bar {
