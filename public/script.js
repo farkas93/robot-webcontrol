@@ -26,10 +26,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     document.querySelectorAll('button').forEach((button) => {
-        button.addEventListener('mousedown', () => {
+        // Handle mouse down or touch start
+        const startEvent = (e) => {
+            // Prevent the default mouse event from firing if this is a touch event
+            e.preventDefault();
             const command = button.getAttribute('data-command');
             sendCommand(command); // Send the command associated with the button
-        });
-        button.addEventListener('mouseup', () => sendCommand(-1)); // stop command
+        };
+
+        // Handle mouse up or touch end
+        const endEvent = (e) => {
+            // Prevent the default mouse event from firing if this is a touch event
+            e.preventDefault();
+            sendCommand(-1); // stop command
+        };
+
+        // Listen for both mouse and touch events
+        button.addEventListener('mousedown', startEvent);
+        button.addEventListener('touchstart', startEvent);
+        button.addEventListener('mouseup', endEvent);
+        button.addEventListener('touchend', endEvent);
     });
 });
