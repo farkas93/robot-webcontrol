@@ -12,7 +12,16 @@
 <script src="script.js"></script>
 <body>
     <!-- Camera Stream -->
-    <img id="camera-stream" src="http://192.168.1.36:8000/stream.mjpg" alt="Camera Stream">
+    <img id="camera-stream" src="" alt="Camera Stream">
+    <script>
+        fetch('/config') // Adjust the path if necessary
+          .then(response => response.json())
+          .then(config => {
+            const streamURL = `${config.webcamStreamURL}:${config.webcamStreamPort}/stream.mjpg`;
+            document.getElementById('camera-stream').src = streamURL;
+          })
+          .catch(error => console.error('Failed to load config:', error));
+    </script>
     <div class="title-bar">ELIZA Controls</div>
     <div class="button-container">
         <button data-command="0"><i class="fas fa-arrow-left"></i></button>
