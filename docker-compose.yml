@@ -1,0 +1,29 @@
+services:
+  robot-web-control:
+    container_name: robot-web-control
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      tags:
+        - ${DOCKER_REGISTRY}/$DOCKER_USERNAME/robot-web-control:$VERSION_TAG
+        - ${DOCKER_REGISTRY}/$DOCKER_USERNAME/robot-web-control:latest
+    image: ${DOCKER_REGISTRY}/$DOCKER_USERNAME/robot-web-control
+    restart: unless-stopped
+
+    environment:
+      IP_ADDRESS: ${IP_ADDRESS}
+      PORT: ${PORT}
+      MQTT_SERVER: ${MQTT_SERVER}
+      MQTT_PORT: ${MQTT_PORT}
+      MQTT_USER: ${MQTT_USER}
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+      WEBCAM_STREAM_URL: ${WEBCAM_STREAM_URL}
+      WEBCAM_STREAM_PORT: ${WEBCAM_STREAM_PORT}
+    ports:
+      - '${PORT}:${PORT}'
+    networks:
+      - home-net
+      
+networks:
+  home-net:
+    driver: bridge

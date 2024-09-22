@@ -1,9 +1,10 @@
 {
   "name": "robot-webcontrol",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "A web control interface for a robot",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/farkas93/robot-webcontrol#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "dotenv": "^10.0.0"
   }
 }

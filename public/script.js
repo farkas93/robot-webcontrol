@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Fetch the configuration
     fetch('/config')
-        .then(response => response.json()) // Parse the JSON from the response
+        .then(response => response.json())
         .then(config => {
-            // Now that we have the config, we can connect to the MQTT broker
-            const client = mqtt.connect(`ws://${config.mqttServer}:${config.mqttPort}`);
+            console.log(config);
+            const streamURL = `${config.webcamStreamURL}:${config.webcamStreamPort}/stream.mjpg`;
+            document.getElementById('camera-stream').src = streamURL;
+
+            const client = mqtt.connect(`ws://${config.mqttServer}:${config.mqttPort}`, {
+                username: config.mqttUsername,
+                password: config.mqttPassword
+            });
 
             client.on('connect', function () {
                 console.log('Connected to MQTT broker via WebSocket');
@@ -27,20 +32,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 client.publish(topic, msg);
             }
 
-            // Setup button event listeners
             document.querySelectorAll('button').forEach((button) => {
                 const startEvent = (e) => {
-                    e.preventDefault(); // Prevent the default event
+                    e.preventDefault();
                     const command = button.getAttribute('data-command');
-                    sendCommand(command); // Send the command associated with the button
+                    sendCommand(command);
                 };
 
                 const endEvent = (e) => {
-                    e.preventDefault(); // Prevent the default event
-                    sendCommand(-1); // Send the stop command
+                    e.preventDefault();
+                    sendCommand(-1);
                 };
 
-                // Listen for both mouse and touch events
                 button.addEventListener('mousedown', startEvent);
                 button.addEventListener('touchstart', startEvent);
                 button.addEventListener('mouseup', endEvent);

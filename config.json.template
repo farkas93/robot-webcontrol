@@ -1,8 +1,0 @@
-{
-  "ipAddress": "0.0.0.0",
-  "port": 3000,
-  "mqttServer": "REPLACE_WITH_IP",
-  "mqttPort": 9001,
-  "webcamStreamURL": "REPLACE_WITH_URL",
-  "webcamStreamPort": 8000
-}

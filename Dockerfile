@@ -15,9 +15,7 @@ RUN npm install
 
 # Bundle app source
 COPY public/ ./public/
-COPY app.js .
-COPY config.json .
-
+COPY server.js .
 
 # Define the command to run your app using CMD which defines your runtime
-CMD [ "node", "app.js" ]
+CMD ["node", "server.js"]
