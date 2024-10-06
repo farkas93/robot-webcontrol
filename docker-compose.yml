@@ -1,13 +1,13 @@
 services:
-  robot-web-control:
-    container_name: robot-web-control
+  robot-webcontrol:
+    container_name: robot-webcontrol
     build: 
       context: .
       dockerfile: Dockerfile
       tags:
-        - ${DOCKER_REGISTRY}/$DOCKER_USERNAME/robot-web-control:$VERSION_TAG
-        - ${DOCKER_REGISTRY}/$DOCKER_USERNAME/robot-web-control:latest
-    image: ${DOCKER_REGISTRY}/$DOCKER_USERNAME/robot-web-control
+        - ${DOCKER_REGISTRY}/$DOCKER_USERNAME/robot-webcontrol:$VERSION_TAG
+        - ${DOCKER_REGISTRY}/$DOCKER_USERNAME/robot-webcontrol:latest
+    image: ${DOCKER_REGISTRY}/$DOCKER_USERNAME/robot-webcontrol
     restart: unless-stopped
 
     environment:
