@@ -6,19 +6,19 @@
     <title>ELIZA Controls</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
     <img id="camera-stream" src="" alt="Camera Stream">
     <div class="title-bar">Controls</div>
     <div class="button-container">
-        <button data-command="0"><i class="fas fa-arrow-left"></i></button>
-        <button data-command="1"><i class="fas fa-arrow-right"></i></button>
-        <button data-command="2"><i class="fas fa-arrow-up"></i></button>
-        <button data-command="5"><i class="fas fa-arrow-circle-up"></i></button>
-        <button data-command="3"><i class="fas fa-arrow-down"></i></button>
-        <button data-command="4"><i class="fas fa-arrow-circle-down"></i></button>
+        <button data-command="0" aria-label="Left"><i class="fas fa-arrow-left"></i></button>
+        <button data-command="1" aria-label="Right"><i class="fas fa-arrow-right"></i></button>
+        <button data-command="2" aria-label="Up"><i class="fas fa-arrow-up"></i></button>
+        <button data-command="5" aria-label="Backward"><i class="fas fa-arrow-circle-up"></i></button>
+        <button data-command="3" aria-label="Down"><i class="fas fa-arrow-down"></i></button>
+        <button data-command="4" aria-label="Forward"><i class="fas fa-arrow-circle-down"></i></button>
     </div>
 </body>
 </html>

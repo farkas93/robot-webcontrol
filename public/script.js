@@ -2,34 +2,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
     fetch('/config')
         .then(response => response.json())
         .then(config => {
-            console.log(config);
-            const streamURL = `${config.webcamStreamURL}:${config.webcamStreamPort}/stream.mjpg`;
+            let streamURL = `${config.webcamStreamURL}`;
+            const webcamStreamPort = Number(config.webcamStreamPort);
+
+            if (webcamStreamPort !== 443 && webcamStreamPort !== 80) {
+                streamURL = `${streamURL}:${config.webcamStreamPort}`;
+            }
+            streamURL = `${streamURL}/stream.mjpg`;
             document.getElementById('camera-stream').src = streamURL;
 
-            const client = mqtt.connect(`ws://${config.mqttServer}:${config.mqttPort}`, {
-                username: config.mqttUsername,
-                password: config.mqttPassword
+            const socket = io();
+
+            socket.on('connect', function () {
+                console.log('Connected to server via WebSocket');
             });
 
-            client.on('connect', function () {
-                console.log('Connected to MQTT broker via WebSocket');
+            socket.on('mqttMessage', function (data) {
+                console.log(`Received MQTT message: ${data.topic} - ${data.message}`);
             });
-
-            client.on('error', function (error) {
-                console.error('Connection error:', error);
-            });
-
-            client.on('close', function () {
-                console.log('Connection closed');
-            });
-
-            const topic = "robotControl";
 
             function sendCommand(cmd) {
                 const command = parseInt(cmd, 10);
                 const msg = JSON.stringify({ command });
                 console.log(`Sending command: ${msg}`);
-                client.publish(topic, msg);
+                socket.emit('publish', { message: msg });
             }
 
             document.querySelectorAll('button').forEach((button) => {

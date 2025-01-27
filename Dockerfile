@@ -17,5 +17,8 @@ RUN npm install
 COPY public/ ./public/
 COPY server.js .
 
+# Expose the port the app runs on
+EXPOSE 3000
+
 # Define the command to run your app using CMD which defines your runtime
 CMD ["node", "server.js"]
